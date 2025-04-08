@@ -1,3 +1,82 @@
 .test {
     background-color: rgba(211, 253, 3, 0.941);
 }
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    /* border-width: 0 0 2px 0;
+    border-style: solid; */
+    box-shadow: 0 5px 10 grey;
+    align-items: center;
+    padding: 0 10px;
+    border-radius: 2px;
+}
+
+.main-header > ul {
+    list-style:none;
+    display: flex;
+}
+
+.main-header > ul > li {
+    padding: 5px;
+}
+
+.header-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.main-search {
+    padding: 10px;
+}
+
+.resto-main-card {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.resto-card {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin: 5px;
+    transition: 0.3s;
+    width: 215px;
+}
+
+.resto-img-cover {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.resto-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.resto-card:hover {
+    box-shadow: 0 0 5 gray;
+}
+
+.top-rated-btn {
+    cursor: pointer;
+}
+
+.shimmer-container {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #f7f7f7;
+}
+
+.shimmer-card {
+    padding: 5px;
+    margin: 5px;
+    width: 215px;
+    height: 200px;
+    background-color: #e3f2fd;
+}
