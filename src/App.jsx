@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import Header from './components/Header';
 import Body from './components/Body';
@@ -17,7 +17,17 @@ const AppLayout = () => (
     </div>
 )
 
-const App = () => (
+// lazy loading
+// Dynamic import
+// Dynamic Bundling
+// Chunking
+// On demand loading
+// Code splitting
+
+const Grocery = lazy(() => import('./components/GroceryStore'))
+
+const App = () => {
+    return (
     <BrowserRouter>
         <Routes>
             <Route path='/' element={<AppLayout />} >
@@ -26,10 +36,11 @@ const App = () => (
                 <Route path='/contact' element={<ContactUs />} />
                 <Route path='*' element={<ErrorElement />} />
                 <Route path='/restaurants/:id' element={<RestaurantDetails />} />
+                <Route path='/grocery' element={<Suspense fallback={<h1>Loading groceries....</h1>}><Grocery /></Suspense>} />
             </Route>
         </Routes>
     </BrowserRouter>
-)
+)}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

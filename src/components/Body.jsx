@@ -4,6 +4,7 @@ import RestoCard from "./RestoCard";
 import restorants from "../utils/mockData";
 import swiggyRes from "../utils/mockSwiggy";
 import Shimmer from "./Shimmer";
+import useOnlineStatus from "../hooks/useOnlineStatus";
 
 const Body = () => {
     const [list, setList] = useState([]);
@@ -11,6 +12,9 @@ const Body = () => {
     const [isTopRated, setTopRated] = useState(false);
     const [search, setSearch] = useState('');
     const [filteredRes, setFilter] = useState([]);
+
+    const online = useOnlineStatus();
+    console.log("online", online);
 
     const fetchSwiggy = async () => {
         // const response = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
@@ -30,7 +34,7 @@ const Body = () => {
     }
 
     useEffect(()=> {
-        fetchSwiggy();
+        if(online) fetchSwiggy();
     }, [])
 
 
@@ -46,6 +50,9 @@ const Body = () => {
     }
     
 
+    if(!online) {
+        return <h1>Please Check Your Internet Connection and Try Again :(</h1>
+    }
 
     return (
     <div className='main-body'>
