@@ -80,3 +80,11 @@
     height: 200px;
     background-color: #e3f2fd;
 }
+
+.user-card {
+    border: black solid 1px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: auto;
+}
