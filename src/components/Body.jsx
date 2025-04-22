@@ -57,7 +57,7 @@ const Body = () => {
     return (
     <div className='main-body'>
         <Search onClickTopRated={onClickTopRated} search={search} setSearch={setSearch} list={list} setList={setFilter}/>
-        <div className='resto-main-card'>
+        <div className="flex flex-wrap gap-2">
             {isLoading ? <Shimmer/> :
             filteredRes?.map((resto) => <RestoCard key={resto.info.id} resto={resto} />)}
         </div>
