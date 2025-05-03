@@ -20,4 +20,13 @@ const RestoCard = (props) => {
     )
 }
 
+const promoted = (ComponentEx, props) => {
+    return <div>
+        <label>Promoted</label>
+        <ComponentEx  {...props}/>
+    </div>
+}
+
+export const withPromoted = (ComponentEx) => (props) => promoted(ComponentEx, props);
+
 export default RestoCard;

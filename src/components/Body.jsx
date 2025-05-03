@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Search from "./Search";
-import RestoCard from "./RestoCard";
+import RestoCard, { withPromoted } from "./RestoCard";
 import restorants from "../utils/mockData";
 import swiggyRes from "../utils/mockSwiggy";
 import Shimmer from "./Shimmer";
@@ -12,6 +12,8 @@ const Body = () => {
     const [isTopRated, setTopRated] = useState(false);
     const [search, setSearch] = useState('');
     const [filteredRes, setFilter] = useState([]);
+
+    const RestoPromoted = withPromoted(RestoCard);
 
     const online = useOnlineStatus();
     console.log("online", online);
@@ -59,7 +61,7 @@ const Body = () => {
         <Search onClickTopRated={onClickTopRated} search={search} setSearch={setSearch} list={list} setList={setFilter}/>
         <div className="flex flex-wrap gap-2">
             {isLoading ? <Shimmer/> :
-            filteredRes?.map((resto) => <RestoCard key={resto.info.id} resto={resto} />)}
+            filteredRes?.map((resto) => <RestoPromoted key={resto.info.id} resto={resto} />)}
         </div>
     </div>
 )}
