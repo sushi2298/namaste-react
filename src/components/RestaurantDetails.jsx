@@ -3,6 +3,8 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router";
 import { ITEM_URL, RESTO_URL } from "../utils/constants";
 import useRestoInfo from "../hooks/useRestoInfo";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/slices/cartSlice";
 
 const RestaurantDetails = () => {
     const [openIndex, setOpenIndex] = useState(null);
@@ -47,7 +49,13 @@ const Accordian = ({ id,label, openIndex, setOpenIndex, data }) => {
     )
 }
 
-const ItemCard = ({item}) => {
+export const ItemCard = ({item}) => {
+
+    const dispatch = useDispatch();
+
+    const onAdd = (item) => {
+        dispatch(addItem(item))
+    }
     return (
         <div className="flex justify-between border-b-1 py-4">
             <div className="flex-col gap-4">
@@ -60,7 +68,7 @@ const ItemCard = ({item}) => {
                 <img src={ITEM_URL + item.imageId} height={144} width={156} className="rounded-2xl m-[14]"/>
                 <button 
                     className="absolute self-end font-bold text-emerald-700 bg-white rounded-md px-8 py-1 shadow cursor-pointer hover:bg-gray-300"
-                    onClick={() => {}}
+                    onClick={() => onAdd(item)}
                 >
                     ADD
                 </button>

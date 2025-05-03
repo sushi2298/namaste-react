@@ -8,23 +8,20 @@ import About from './components/About';
 import ErrorElement from './components/ErrorElement';
 import ContactUs from './components/ContactUs';
 import RestaurantDetails from './components/RestaurantDetails';
-import UserContext from './context/UserContext';
+import { Provider } from 'react-redux';
+import appStore from './utils/appStore';
+import Cart from './components/Cart';
 
 const AppLayout = () => {
-    const [user, setUser] = useState('');
-
-    useEffect(() => {
-        // api call
-        setUser("shab");
-    }, []);
+    
     return (
-        <UserContext.Provider value={{ userName: user, setUser }} >
+        <Provider store={appStore} >
             <div>
                 <Header />
                 <Outlet />
                 {/* <Footer /> */}
             </div>
-        </UserContext.Provider>
+        </Provider>
     )
 }
 
@@ -48,6 +45,7 @@ const App = () => {
                     <Route path='*' element={<ErrorElement />} />
                     <Route path='/restaurants/:id' element={<RestaurantDetails />} />
                     <Route path='/grocery' element={<Suspense fallback={<h1>Loading groceries....</h1>}><Grocery /></Suspense>} />
+                    <Route path='/cart' element={<Cart />} />
                 </Route>
             </Routes>
         </BrowserRouter>
