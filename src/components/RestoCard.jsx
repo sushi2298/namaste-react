@@ -6,7 +6,7 @@ const RestoCard = (props) => {
     const { resto } = props;
     const { name, cuisines, areaName, avgRating, sla, cloudinaryImageId, id } = resto?.info;
     return (
-        <Link to={'/restaurants/' + id } style={{ textDecoration: 'none', color: 'inherit'}} key={id} >
+        <Link to={'/restaurants/' + id } style={{ textDecoration: 'none', color: 'inherit'}} key={id} data-testid="RestoCard" >
         <div className='flex flex-col w-60 rounded-lg bg-stone-100 p-2 hover:bg-stone-200 shadow-lg'>
             <div className='rounded-lg'>
                 <img className='resto-image' src={IMG_BASE_URL+cloudinaryImageId} />

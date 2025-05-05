@@ -11,10 +11,14 @@ import RestaurantDetails from './components/RestaurantDetails';
 import { Provider } from 'react-redux';
 import appStore from './utils/appStore';
 import Cart from './components/Cart';
+import UserContext from './context/UserContext';
 
 const AppLayout = () => {
     
+    const [user, setUser] = useState('sushi');
+
     return (
+        <UserContext.Provider value={{ userName: user, setUser}}>
         <Provider store={appStore} >
             <div>
                 <Header />
@@ -22,6 +26,7 @@ const AppLayout = () => {
                 {/* <Footer /> */}
             </div>
         </Provider>
+        </UserContext.Provider>
     )
 }
 

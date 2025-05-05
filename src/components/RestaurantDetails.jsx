@@ -16,12 +16,12 @@ const RestaurantDetails = () => {
     }
     const accList = data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
     return (
-        <div className="justify-items-center">
+        <div className="justify-items-center" key={`${id}`} >
             
             {accList.map(({card}, index) => {
                 if(card?.card?.title){
                     const info = card.card.itemCards;
-                    return <Accordian key={card.card.type} label={card.card.title} data={info} id={index} openIndex={openIndex} setOpenIndex={setOpenIndex} />
+                    return <Accordian key={`${card.card.title} ${index}`} label={card.card.title} data={info} id={index} openIndex={openIndex} setOpenIndex={setOpenIndex} />
                 }
             })}
         </div>
@@ -39,7 +39,7 @@ const Accordian = ({ id,label, openIndex, setOpenIndex, data }) => {
         <div className="shadow p-4 flex w-1/2 flex-col my-4" >
             <div className="flex justify-between">
                 <h1 className="font-extrabold">{label}</h1>
-                <button onClick={onClickAcc}> ⏬ </button>
+                <button onClick={onClickAcc} data-testid={`accordian_${label}`} > ⏬ </button>
             </div>
             {
                 id == openIndex &&
@@ -57,7 +57,7 @@ export const ItemCard = ({item}) => {
         dispatch(addItem(item))
     }
     return (
-        <div className="flex justify-between border-b-1 py-4">
+        <div className="flex justify-between border-b-1 py-4" data-testid="foodItems">
             <div className="flex-col gap-4">
                 <div className="font-bold">{item.name}</div>
                 <div>Rs.{item.price / 100}</div>
@@ -69,6 +69,7 @@ export const ItemCard = ({item}) => {
                 <button 
                     className="absolute self-end font-bold text-emerald-700 bg-white rounded-md px-8 py-1 shadow cursor-pointer hover:bg-gray-300"
                     onClick={() => onAdd(item)}
+                    
                 >
                     ADD
                 </button>

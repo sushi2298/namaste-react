@@ -24,7 +24,7 @@ const Cart = () => {
                 items.length === 0 && <div> Nothing here to display....</div>
             }
             {
-                items.map((item) => (<ItemCard item={item}/>))
+                items.map((item) => (<ItemCard item={item} key={item.id}/>))
             }
         </div>
     )
